@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesh With Friends Image Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Sesh With Friends Image Generator</h1>
+        <div class="form-container">
+            <form id="imageForm">
+                <div class="input-group">
+                    <label for="prompt">Prompt:</label>
+                    <input type="text" id="prompt" name="prompt" required>
+                </div>
+                <div class="input-group">
+                    <label for="aspectRatio">Aspect Ratio:</label>
+                    <select id="aspectRatio" name="aspectRatio">
+                        <option value="1:1">1:1 (Square)</option>
+                        <option value="16:9">16:9 (Landscape)</option>
+                        <option value="9:16">9:16 (Portrait)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="safetyTolerance">Safety Tolerance:</label>
+                    <select id="safetyTolerance" name="safetyTolerance">
+                        <option value="low">Low</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="seed">Seed:</label>
+                    <input type="number" id="seed" name="seed" min="0" max="4294967295" value="0">
+                </div>
+                <div class="input-group">
+                    <label for="width">Width: <span id="widthValue">512</span></label>
+                    <input type="range" id="widthSlider" name="width" min="256" max="1024" value="512" step="8">
+                </div>
+                <div class="input-group">
+                    <label for="height">Height: <span id="heightValue">512</span></label>
+                    <input type="range" id="heightSlider" name="height" min="256" max="1024" value="512" step="8">
+                </div>
+                <button type="submit">Generate Image</button>
+            </form>
+        </div>
+        <div id="loadingIndicator" class="loading">
+            <p>Generating image, please wait...</p>
+        </div>
+        <div id="resultContainer" class="result-container" style="display: none;">
+            <img id="generatedImage" alt="Generated Image">
+            <a id="downloadBtn" class="download-btn" href="#" download>Download Image</a>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
